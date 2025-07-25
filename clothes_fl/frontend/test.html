@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>测试模式 - 服装识别系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="test-mode-header">
+        <h1>测试模式</h1>
+        <button id="back-to-main" class="back-btn">返回主页</button>
+    </div>
+    
+    <section id="test-upload-section">
+        <h2>上传测试数据</h2>
+        <div class="test-upload-form">
+            <div class="upload-group">
+                <label for="excel-input">选择Excel文件（包含正确标签）：</label>
+                <input type="file" id="excel-input" accept=".xlsx,.xls" required>
+            </div>
+            <div class="upload-group">
+                <label for="images-input">选择对应的图片文件：</label>
+                <input type="file" id="images-input" accept="image/*" multiple required>
+            </div>
+            <button id="start-test-btn" class="start-test-btn">开始测试</button>
+        </div>
+        
+        <!-- 测试进度条 -->
+        <div id="test-progress-container" class="progress-container" style="display: none;">
+            <div class="progress-header">
+                <span id="test-progress-text">准备测试...</span>
+                <span id="test-progress-percentage">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div id="test-progress-fill" class="progress-fill"></div>
+            </div>
+            <div id="test-status" class="upload-status"></div>
+        </div>
+    </section>
+    
+    <!-- 测试结果展示区域 -->
+    <section id="test-results-section" style="display: none;">
+        <h2>测试结果</h2>
+        <div class="accuracy-display">
+            <div class="accuracy-card">
+                <h3>总体准确率</h3>
+                <div class="accuracy-value" id="overall-accuracy">0%</div>
+            </div>
+            <div class="accuracy-breakdown">
+                <div class="dimension-accuracy">
+                    <span>颜色准确率：</span>
+                    <span id="color-accuracy">0%</span>
+                </div>
+                <div class="dimension-accuracy">
+                    <span>样式准确率：</span>
+                    <span id="style-accuracy">0%</span>
+                </div>
+                <div class="dimension-accuracy">
+                    <span>领型准确率：</span>
+                    <span id="collar-accuracy">0%</span>
+                </div>
+                <div class="dimension-accuracy">
+                    <span>袖型准确率：</span>
+                    <span id="sleeve-accuracy">0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 错误图片展示 -->
+        <div class="error-images-section">
+            <h3>识别错误的图片</h3>
+            <div id="error-images-grid" class="error-grid"></div>
+        </div>
+    </section>
+    
+    <!-- 错误详情弹窗 -->
+    <div id="error-detail-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>错误详情</h3>
+            <div class="error-detail-content">
+                <div class="image-container">
+                    <img id="error-detail-image" src="" alt="错误图片">
+                </div>
+                <div class="tags-comparison">
+                    <div class="correct-tags">
+                        <h4>正确标签</h4>
+                        <div id="correct-tags-content"></div>
+                    </div>
+                    <div class="ai-tags">
+                        <h4>AI识别标签</h4>
+                        <div id="ai-tags-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="test.js"></script>
+</body>
+</html>
